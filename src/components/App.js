@@ -10,7 +10,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Nav from './Nav';
 
 import Home from "./Home"
-import LogIn from "./users/LogIn";
+import LogIn from "./LogIn";
 import LeaderBoard from "./users/LeaderBoard"
 import NewQuestion from "./questions/NewQuestion";
 import Question from "./questions/Question";
@@ -31,7 +31,10 @@ class App extends Component {
         <Fragment>
           <LoadingBar/>
           <div className = 'container'>
-          <Nav/>
+            {
+              !this.props.showLogin &&
+              <Nav />
+            }
             { this.props.loading === true
             ? null
             : <div>
@@ -53,6 +56,12 @@ class App extends Component {
   }
 }
 
+function mapStateToProps({ authedUser }) {
 
+  console.log(authedUser)
+  return {
+    showLogin: authedUser === null
+  }
+}
 
-export default connect()(App)
+export default connect(mapStateToProps)(App)

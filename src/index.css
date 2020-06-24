@@ -1,3 +1,325 @@
+/* body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+} */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+hr {
+  border: 1px solid rgba(0,0,0,0.5);
+  border-top: 0px solid rgba(0,0,0,0.5);
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0px 10px 10px 10px;
+}
+
+.center {
+  text-align: center;
+}
+
+.input {
+	margin: 15px auto;
+	padding: 5px;
+	border: 1px solid rgba(0,0,0,0.29);
+	font-size: 12px;
+	width: 200px;
+}
+
+.btn {
+  text-transform: uppercase;
+  margin: 15px auto;
+  padding: 5px;
+  border: 1px solid rgba(0,0,0,.29);
+  background: #fff;
+  font-size: 12px;
+  width: 125px;
+  position: relative;
+}
+
+.loading {
+  background-color: rgba(0,0,0,0.29);
+  height: 5px;
+}
+
+.btn-login-group {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.btn-login-group > .btn {
+  margin: 15px 6px;
+  width: 100px;
+}
+
+.btn-login-group > .btn:hover {
+  border-color: rgba(0,0,0,.5);
+  text-decoration: none;
+}
+
+.btn-login-group > .btn:focus {
+  outline: 0;
+  font-weight: 700;
+}
+
+.login {
+	width: 100%;
+  max-width: 590px;
+  margin: 0 auto;
+}
+
+.login-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-error {
+  margin: 0 auto;
+  color: rgba(255,0,0,1);
+}
+
+.question-list {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.btn-list-group {
+  width: 100%;
+  max-width: 590px;
+  margin: 0 auto;
+  padding: 0px 10px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.btn-list-group > .btn {
+  margin: 15px 10px;
+}
+
+.btn-list-group > .btn:hover {
+  border-color: rgba(0,0,0,.75);
+  background-color: rgba(0,0,0,0.05);
+  text-decoration: none;
+}
+
+.btn-list-group > .btn:focus {
+  outline: 0;
+}
+
+.nav {
+  position: sticky;
+  top: 0px;
+  z-index: 1000;
+  width: 100%;
+  margin: 0 auto;
+  background-color: rgba(235,235,235,1);
+}
+
+.nav ul {
+  margin: 0 auto;
+  padding: 0px 10px 0px 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  text-decoration: none;
+}
+
+.nav li {
+  width: 100%;
+  max-width: 125px;
+  padding: 20px 5px 20px 5px;
+  text-align: center;
+}
+
+.nav li.user-details {
+  margin-left: auto;
+  padding: 0px 10px 0px 10px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.nav-user-avatar {
+  height: 35px;
+  border-radius: 25px;
+  margin: 0px;
+  margin-right: 10px;
+}
+
+.nav hr {
+  margin: 0px;
+}
+
+ul {
+  padding-left: 0;
+}
+
+li {
+  list-style-type: none;
+  padding: 20px 0px;
+  text-decoration: none;
+}
+
+.questions-list li:first-child {
+  padding-top: 0px;
+}
+
+.question {
+  width: 100%;
+  max-width: 590px;
+  margin: 0 auto;
+  padding: 20px 10px 10px 10px;
+  border: 1px solid rgba(0,0,0,.29);
+  border-radius: 5px;
+}
+
+.options {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+}
+
+.options > div.option {
+  width: 40%;
+  max-width: 250px;
+  padding: 10px;
+  border: 1px solid rgba(0,0,0,.29);
+  border-radius: 5px;
+}
+
+.options > div.divider {
+  width: 4%;
+  max-width: 70px;
+  padding: 10px;
+}
+
+.details {
+  width: 25%;
+  margin: 0px auto;
+  padding: 20px 10px 5px 10px;
+}
+
+.question-details {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.author-details {
+  width: 100%;
+  max-width: 590px;
+  margin: 0 auto;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-avatar {
+  height: 50px;
+  border-radius: 25px;
+  margin: 10px;
+}
+
+.options-details {
+  width: 100%;
+  max-width: 590px;
+  margin: 20px auto;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.options-details > div.option {
+  width: 40%;
+  max-width: 250px;
+  padding: 20px;
+  display: flex;
+  flex-flow: column nowrap;
+  border: 1px solid rgba(0,0,0,0.29);
+  border-radius: 5px;
+}
+
+div.option > .btn {
+  width: 75px;
+}
+
+div.option > .btn:hover {
+  border-color: rgba(0,0,0,0.5);
+  background-color: rgba(0,0,0,0.01);
+  text-decoration: none;
+}
+
+.leaderboard {
+  width: 100%;
+  max-width: 590px;
+  margin: 0 auto;
+}
+
+.leaderboard-row {
+  margin: 10px auto;
+  padding: 10px;
+  border: 1px solid rgba(0,0,0,.29);
+}
+
+.leaderboard-details {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.user-details {
+  width: 100%;
+  text-align: center;
+}
+
+.add-question {
+  width: 100%;
+  max-width: 590px;
+  margin: 0 auto;
+}
+
+.add-question-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* nano code  */
 body {
   margin: 0;
   padding: 0;
