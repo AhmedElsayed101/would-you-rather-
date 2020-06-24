@@ -16,8 +16,8 @@ export function handleReceiveData () {
         return getDataAPI()
             .then(({users, questions}) => {
 
-                dispatch(receiveUsers)
-                dispatch(receiveQuestions(tweets))
+                dispatch(receiveUsers(users))
+                dispatch(receiveQuestions(questions))
                 dispatch(setAuthedUser(AUTHED_ID))
                 dispatch(hideLoading())
             })
