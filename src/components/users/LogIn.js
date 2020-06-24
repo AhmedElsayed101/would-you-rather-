@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-class User extends Component {
+class LogIn extends Component {
     render () {
         return (
             <div>
-                User
+                LogIn
             </div>
         )
     }
@@ -14,4 +14,4 @@ class User extends Component {
 
 
 
-export default connect()(User)
+export default connect()(LogIn)

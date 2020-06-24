@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Nav from './Nav';
 
 import Home from "./Home"
+import LogIn from "./users/LogIn";
 import LeaderBoard from "./users/LeaderBoard"
 import NewQuestion from "./questions/NewQuestion";
 import Question from "./questions/Question";
@@ -34,10 +35,11 @@ class App extends Component {
             { this.props.loading === true
             ? null
             : <div>
-                <Route path = '/' exact component = {Home} />
-                <Route path = '/question/:id' component = {Question}/>
-                <Route path = '/question/:id/vote' component = {QuestionVote}/>
-                <Route path = '/question/:id/result' component = {QuestionResult}/>
+                <Route path = '/' exact component = {LogIn}/>
+                <Route path = '/home' exact component = {Home} />
+                <Route path = '/questions/:id' exact component = {Question}/>
+                <Route path = '/questions/:id/vote' component = {QuestionVote}/>
+                <Route path = '/questions/:id/result' component = {QuestionResult}/>
                 <Route path = '/new' component = {NewQuestion}/>
                 <Route path = '/leaderboard' component = {LeaderBoard}/>
               </div>
