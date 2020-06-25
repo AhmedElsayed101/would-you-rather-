@@ -1,8 +1,9 @@
-import {saveQuestionAPI} from '../utils/api'
+import {saveQuestionAPI, saveAnswerAPI} from '../utils/api'
 import { showLoading, hideLoading } from "react-redux-loading";
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
 export const SAVE_QUESTION = 'SAVE_QUESTION'
+export const SAVE_ANSWER = 'SAVE_ANSWER'
 
 
 
@@ -33,5 +34,26 @@ export function handleSaveQuestion (question) {
             })
 
         
+    }
+}
+
+function saveAnswer (answer){
+    return {
+        type : SAVE_ANSWER,
+        answer
+    }
+
+}
+
+export function handleSaveAnswer (answer){
+    return (dispatch) => {
+        
+        dispatch(showLoading())
+
+        return saveQuestionAPI(answer)
+            .then(() => {
+                dispatch(saveAnswer(answer))
+                dispatch(hideLoading())
+            })
     }
 }

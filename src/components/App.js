@@ -13,7 +13,7 @@ import Home from "./Home"
 import LogIn from "./LogIn";
 import LeaderBoard from "./users/LeaderBoard"
 import NewQuestion from "./questions/NewQuestion";
-import Question from "./questions/Question";
+import QuestionPage from "./questions/QuestionPage";
 import QuestionVote from "./questions/QuestionVote";
 import QuestionResult from "./questions/QuestionResult";
 
@@ -40,7 +40,7 @@ class App extends Component {
             : <div>
                 <Route path = '/' exact component = {LogIn}/>
                 <Route path = '/home' exact component = {Home} />
-                <Route path = '/questions/:id' exact component = {Question}/>
+                <Route path = '/questions/:id' exact component = {QuestionPage}/>
                 <Route path = '/questions/:id/vote' component = {QuestionVote}/>
                 <Route path = '/questions/:id/result' component = {QuestionResult}/>
                 <Route path = '/new' component = {NewQuestion}/>
@@ -58,7 +58,6 @@ class App extends Component {
 
 function mapStateToProps({ authedUser }) {
 
-  console.log(authedUser)
   return {
     showLogin: authedUser === null
   }

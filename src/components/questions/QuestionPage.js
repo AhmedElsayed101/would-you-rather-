@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
 
-class Question extends Component {
+class QuestionPage extends Component {
 
     state = {
         submited : false
@@ -44,7 +44,7 @@ class Question extends Component {
 
 function mapStateToProps ({authedUser, questions, users}, props) {
 
-    const {id} = props
+    const {id} = props.match.params
     const question = questions[id]
     const authorID = question.author
     const authorOfQuestion = users[authorID]
@@ -58,4 +58,4 @@ function mapStateToProps ({authedUser, questions, users}, props) {
 
 
 
-export default connect(mapStateToProps)(Question)
+export default connect(mapStateToProps)(QuestionPage)
