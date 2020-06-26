@@ -50,7 +50,7 @@ export function handleSaveAnswer (answer){
         
         dispatch(showLoading())
 
-        return saveQuestionAPI(answer)
+        return saveAnswerAPI(answer)
             .then(() => {
                 dispatch(saveAnswer(answer))
                 dispatch(hideLoading())

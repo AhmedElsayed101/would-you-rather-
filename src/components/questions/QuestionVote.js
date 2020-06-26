@@ -15,7 +15,7 @@ class QuestionVote extends Component {
     }
 
     handleChange = (e) => {
-        const {name, value, checked,} =  e.target
+        const {name, value,} =  e.target
         this.setState(()=>({
             [name] : value
         }))
@@ -27,6 +27,7 @@ class QuestionVote extends Component {
         e.preventDefault()
         const {option} = this.state
         const {dispatch, authedUser, question} = this.props
+
         const answer = {
             authedUser,
             qid : question.id,
@@ -42,6 +43,7 @@ class QuestionVote extends Component {
 
         const {authedUser,question, authorOfQuestion } = this.props
         const {option,submited} = this.state
+
         if (authedUser === null) {
             return <Redirect to = {'/'}/>
         }
@@ -64,7 +66,7 @@ class QuestionVote extends Component {
                         checked = {option === 'optionOne'}
                         onChange = {this.handleChange}
                     />
-                    <label for="one">{question.optionOne.text}</label>
+                    <label htmlFor="one">{question.optionOne.text}</label>
                     <br/>
                     <input
                         id = "two"
@@ -75,9 +77,9 @@ class QuestionVote extends Component {
                         onChange = {this.handleChange}
 
                     />
-                    <label for="two">{question.optionTwo.text}</label>
+                    <label htmlFor="two">{question.optionTwo.text}</label>
                     <br/>
-                    <button>Vote</button>
+                    <button onClick = {this.handleVote}>Vote</button>
                 </form>
             </div>
         )
@@ -86,8 +88,12 @@ class QuestionVote extends Component {
 
 function mapStateToProps ({authedUser, questions, users}, props) {
 
+    console.log(authedUser)
     const {id} = props.match.params
+    // console.log(id)
     const question = questions[id]
+    // console.log(questions)
+    // console.log(question)
     const authorID = question.author
     const authorOfQuestion = users[authorID]
 

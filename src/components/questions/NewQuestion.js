@@ -8,7 +8,8 @@ class NewQuestion extends Component {
 
     state = {
         optionOne : '',
-        optionTwo : ''
+        optionTwo : '',
+        submited : false
     }
 
     handleChangeOne = (e) => {
@@ -50,11 +51,14 @@ class NewQuestion extends Component {
     }
     render () {
 
-        const {optionOne,optionTwo} = this.state
+        const {optionOne,optionTwo, submited} = this.state
         const {authedUser} = this.props
 
         if (authedUser === null) {
             return <Redirect to = {'/'}/>
+        }
+        if (submited === true) {
+            return <Redirect to = {'/home'}/>
         }
 
         return (

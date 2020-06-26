@@ -1,13 +1,20 @@
 import React, {Component, useReducer} from 'react'
 import { connect } from "react-redux";
 
-import { NavLink } from 'react-router-dom'
+import { NavLink, withRouter} from 'react-router-dom'
 
 import { AiOutlineLogout } from 'react-icons/ai';
 
+import {logout} from '../actions/authedUser'
 
 class Nav extends  Component{
 
+  logout = () => {
+    const { dispatch } = this.props;
+
+    dispatch(logout());
+    this.props.history.push("/");
+  }
   render() {
 
  
@@ -31,7 +38,7 @@ class Nav extends  Component{
           </li>
           <li className='user-details'>
               <img src={this.props.avatarURL} className='nav-user-avatar'/>
-              <span onClick={this.logoutUser}><AiOutlineLogout size={30}/></span>
+              <span onClick={this.logout}><AiOutlineLogout size={30}/></span>
           </li>
         </ul>
       </nav>
@@ -39,14 +46,6 @@ class Nav extends  Component{
   }
 } 
 
-// function mapStateToProps({authedUser, users}){
-//   console.log('users', users)
-//   console.log('authed', authedUser)
-//   return {
-//     avatarURL: users[authedUser].avatarURL
-//   }
-
-// }
 
 function mapStateToProps({ users, authedUser }) {
   console.log('users', users)
@@ -55,4 +54,4 @@ return {
 }
 }
 
-export default connect(mapStateToProps)(Nav)
+export default withRouter(connect(mapStateToProps)(Nav))

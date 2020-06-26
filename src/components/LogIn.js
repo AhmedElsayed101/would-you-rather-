@@ -54,6 +54,7 @@ class LogIn extends Component {
 
                     <button>LogIn</button>
                 </form> 
+                <p>You can use these usernames to login : sarahedo , tylermcginnis , johndoe</p>
             </div>
         )
     }

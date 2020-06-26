@@ -17,7 +17,7 @@ class QuestionResult extends Component {
     }
     render () {
 
-        const {authedUser,question, authorOfQuestion } = this.props
+        const {authedUser,question, authorOfQuestion, authedUserData } = this.props
         const questionID = question.id
         const {clicked} = this.state
         if (authedUser === null) {
@@ -33,9 +33,9 @@ class QuestionResult extends Component {
                 <div>
                     question by {authorOfQuestion.name}
                 </div>
-                <div>option one {question.optionOne.text}</div>
-                <div>option two {question.optionTwo.text}</div>
-                <div>The answer is {authedUser.answers.questionID}</div>
+                <div>option one: {question.optionOne.text}</div>
+                <div>option two: {question.optionTwo.text}</div>
+                <div>The answer is: {authedUserData.answers[questionID]}</div>
                 <button onClick = {this.handleClick}>Go home</button>
             </div>
         )
@@ -48,11 +48,15 @@ function mapStateToProps ({authedUser, questions, users}, props) {
     const question = questions[id]
     const authorID = question.author
     const authorOfQuestion = users[authorID]
+    const authedUserData = users[authedUser]
+    console.log('daaaaaaaaataaaaaaaa',authedUserData)
+    console.log('option',authedUserData.answers[id])
 
     return {
         authedUser,
         question,
-        authorOfQuestion  
+        authorOfQuestion ,
+        authedUserData 
     }
 }
 

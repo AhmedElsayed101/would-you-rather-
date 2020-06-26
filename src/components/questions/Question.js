@@ -32,8 +32,8 @@ class Question extends Component {
                 <div>
                     question by {authorOfQuestion.name}
                 </div>
-                <div>option one {question.optionOne.text}</div>
-                <div>option two {question.optionTwo.text}</div>
+                <div>option one: {question.optionOne.text}</div>
+                <div>option two: {question.optionTwo.text}</div>
                 
                 <button onClick = {this.handleClick}>Show more</button>
             </div>
