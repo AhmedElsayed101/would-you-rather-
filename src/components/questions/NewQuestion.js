@@ -55,10 +55,15 @@ class NewQuestion extends Component {
         const {authedUser} = this.props
 
         if (authedUser === null) {
-            return <Redirect to = {'/'}/>
+            return <Redirect to = {{
+				pathname: '/login',
+				state: {
+					returnPath: '/new'
+				}
+			}}/>
         }
         if (submited === true) {
-            return <Redirect to = {'/home'}/>
+            return <Redirect to = {'/'}/>
         }
 
         return (

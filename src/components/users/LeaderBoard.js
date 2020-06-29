@@ -9,7 +9,12 @@ class LeaderBoard extends Component {
         const {authedUser, users} = this.props
 
         if (authedUser === null) {
-            return <Redirect to = {'/'}/>
+            return <Redirect to = {{
+				pathname: '/login',
+				state: {
+					returnPath: '/leaderboard'
+				}
+			}}/>
         }
 
         return (
@@ -18,7 +23,7 @@ class LeaderBoard extends Component {
 				<h3 className='center'>Leaderboard</h3>
 				{
 					this.props.users.map((user, index) => (
-                        <User id = {user.id} index = {index}/>    
+                        <User key = {user.id} id = {user.id} index = {index}/>    
 					))
 				}
 			</div>

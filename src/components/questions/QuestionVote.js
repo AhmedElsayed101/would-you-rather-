@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
 import { handleSaveAnswer } from "../../actions/questions";
-
+import {handleReceiveData} from "../../actions/shared";
 class QuestionVote extends Component {
 
     state = {
@@ -37,16 +37,31 @@ class QuestionVote extends Component {
         this.setState(() => ({
             submited : true,
         }))
-        
+ 
     }
+
+           
+    componentWillMount(){
+        this.props.dispatch(handleReceiveData())
+    }
+
     render () {
 
-        const {authedUser,question, authorOfQuestion } = this.props
+        const {authedUser,question, ID,users} = this.props
         const {option,submited} = this.state
 
         if (authedUser === null) {
-            return <Redirect to = {'/'}/>
+            return <Redirect to = {{
+                
+				pathname: '/login',
+				state: {
+					returnPath: `/questions/${ID}/vote`
+				}
+			}}/>
         }
+
+        const authorID = question.author
+        const authorOfQuestion = users[authorID]
 
         if (submited === true) {
             return <Redirect to = {`/questions/${question.id}/result`}/>  
@@ -54,9 +69,12 @@ class QuestionVote extends Component {
 
         return (
             <div>
+                
                 <div>
+                    <img src={authorOfQuestion.avatarURL} className='nav-user-avatar'/> 
                     question by {authorOfQuestion.name}
                 </div>
+                <div>Would You Rather .. ?</div>
                 <form action="">
                     <input
                         id = "one"
@@ -88,19 +106,20 @@ class QuestionVote extends Component {
 
 function mapStateToProps ({authedUser, questions, users}, props) {
 
+    (handleReceiveData())
     console.log(authedUser)
     const {id} = props.match.params
-    // console.log(id)
+    console.log('id',id)
     const question = questions[id]
-    // console.log(questions)
+    console.log('questions',questions)
     // console.log(question)
-    const authorID = question.author
-    const authorOfQuestion = users[authorID]
+   
 
     return {
         authedUser,
         question,
-        authorOfQuestion  
+        users,
+        ID : id
     }
 }
 

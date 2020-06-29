@@ -17,20 +17,33 @@ class QuestionResult extends Component {
     }
     render () {
 
-        const {authedUser,question, authorOfQuestion, authedUserData } = this.props
-        const questionID = question.id
+        const {authedUser,question, users, ID } = this.props
+       
         const {clicked} = this.state
         if (authedUser === null) {
-            return <Redirect to = {'/'}/>
+            return <Redirect to = {{
+                
+				pathname: '/login',
+				state: {
+					returnPath: `/questions/${ID}/result`
+				}
+			}}/>
         }
 
+        const questionID = question.id
+        const authorID = question.author
+        const authorOfQuestion = users[authorID]
+        const authedUserData = users[authedUser]
+
+
         if (clicked === true) {
-            return <Redirect to = {`/home`}/>  
+            return <Redirect to = {`/`}/>  
         }
 
         return (
             <div>
                 <div>
+                    <img src={authorOfQuestion.avatarURL} className='nav-user-avatar'/> 
                     question by {authorOfQuestion.name}
                 </div>
                 <div>option one: {question.optionOne.text}</div>
@@ -45,18 +58,16 @@ class QuestionResult extends Component {
 function mapStateToProps ({authedUser, questions, users}, props) {
 
     const {id} = props.match.params
+    console.log('id', id)
     const question = questions[id]
-    const authorID = question.author
-    const authorOfQuestion = users[authorID]
-    const authedUserData = users[authedUser]
-    console.log('daaaaaaaaataaaaaaaa',authedUserData)
-    console.log('option',authedUserData.answers[id])
+   
+  
 
     return {
         authedUser,
         question,
-        authorOfQuestion ,
-        authedUserData 
+        users,
+        ID :id
     }
 }
 

@@ -8,7 +8,7 @@ import Question from "./questions/Question";
 class Home extends Component {
 
     state = {
-        isAnswered : true
+        isAnswered : false
     }
 
     toggleAnswered = (e, isAnswered) => {
@@ -32,7 +32,12 @@ class Home extends Component {
 								            .sort((a,b) => questions[b].timestamp - questions[a].timestamp)
         
         if (authedUser === null){
-            return <Redirect to = {'/'}/>
+            return <Redirect to = {{
+				pathname: '/login',
+				state: {
+					returnPath: '/'
+				}
+			}}/>
         }
         
         return (
@@ -52,10 +57,10 @@ class Home extends Component {
 				{
 					isAnswered 
 					? answeredQuestionsIds.map((id) => (
-					    <li key={id}><Question id={id}/></li>
+					    <li key={id}><Question id={id} isAnswered = {isAnswered}/></li>
 					))
 					: notAnsweredQuestionsIds.map((id) => (
-						<li key={id}><Question id={id}/></li>
+						<li key={id}><Question id={id} isAnswered = {isAnswered}/></li>
 					))
 				}
 				</ul>

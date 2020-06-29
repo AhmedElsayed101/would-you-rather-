@@ -17,14 +17,19 @@ class Question extends Component {
     }
     render () {
 
-        const {authedUser,question, authorOfQuestion } = this.props
+        const {authedUser,question, authorOfQuestion, isAnswered} = this.props
         const {submited} = this.state
         if (authedUser === null) {
             return <Redirect to = {'/'}/>
         }
 
         if (submited === true) {
-            return <Redirect to = {`/questions/${question.id}/vote`}/>  
+            return <Redirect to = {{
+				pathname: `/questions/${question.id}`,
+				state: {
+					isAnswered: isAnswered
+				}
+			}} />  
         }
 
         return (
@@ -44,7 +49,7 @@ class Question extends Component {
 
 function mapStateToProps ({authedUser, questions, users}, props) {
 
-    const {id} = props
+    const {id,isAnswered } = props
     const question = questions[id]
     const authorID = question.author
     const authorOfQuestion = users[authorID]
@@ -52,7 +57,8 @@ function mapStateToProps ({authedUser, questions, users}, props) {
     return {
         authedUser,
         question,
-        authorOfQuestion  
+        authorOfQuestion,
+        isAnswered
     }
 }
 

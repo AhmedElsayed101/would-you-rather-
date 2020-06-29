@@ -37,10 +37,17 @@ class LogIn extends Component {
 
         const {text, submited} = this.state
 
-        if (submited === true){
-            return <Redirect to = {'/home'}/>
+       
 
-        }
+        // if (submited === true){
+        //     return <Redirect to = {'/'}/>
+
+        // }
+
+        if (this.props.authedUser)
+		{
+			return <Redirect to={this.props.location.state.returnPath} />
+		}
     
         return (
             <div className = 'container'>

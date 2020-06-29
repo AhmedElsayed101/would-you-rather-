@@ -6,7 +6,7 @@ import { handleReceiveData } from "../actions/shared";
 
 import  LoadingBar  from "react-redux-loading";
 
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Nav from './Nav';
 
 import Home from "./Home"
@@ -16,6 +16,12 @@ import NewQuestion from "./questions/NewQuestion";
 import QuestionPage from "./questions/QuestionPage";
 import QuestionVote from "./questions/QuestionVote";
 import QuestionResult from "./questions/QuestionResult";
+
+export function NoMatch (){
+  return(
+    <div>Not Found! ...</div>
+  )
+}
 
 class App extends Component {
 
@@ -38,13 +44,16 @@ class App extends Component {
             { this.props.loading === true
             ? null
             : <div>
-                <Route path = '/' exact component = {LogIn}/>
-                <Route path = '/home' exact component = {Home} />
-                <Route path = '/questions/:id' exact component = {QuestionPage}/>
-                <Route path = '/questions/:id/vote' component = {QuestionVote}/>
-                <Route path = '/questions/:id/result' component = {QuestionResult}/>
-                <Route path = '/new' component = {NewQuestion}/>
-                <Route path = '/leaderboard' component = {LeaderBoard}/>
+                <Switch>
+                  <Route path = '/login' exact component = {LogIn}/>
+                  <Route path = '/' exact component = {Home} />
+                  <Route path = '/questions/:id' exact component = {QuestionPage}/>
+                  <Route path = '/questions/:id/vote' component = {QuestionVote}/>
+                  <Route path = '/questions/:id/result' component = {QuestionResult}/>
+                  <Route path = '/new' component = {NewQuestion}/>
+                  <Route path = '/leaderboard' component = {LeaderBoard}/>
+                  <Route component = {NoMatch}/>
+                </Switch>
               </div>
             }
 
